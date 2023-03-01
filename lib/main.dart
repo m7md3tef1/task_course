@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projectgrad/animated_list.dart';
 import 'package:projectgrad/signinScreen.dart';
 
 void main() {

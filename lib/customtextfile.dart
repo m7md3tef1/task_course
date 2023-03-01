@@ -12,16 +12,17 @@ class CustomTextFormField extends StatefulWidget {
   var keyboard;
 
   bool? secure;
-  void Function(String?)? onsaved;
-  String Function(String?)? validator;
-  CustomTextFormField({super.key,
+ final void Function(String?) onsaved;
+  String? Function(String?)? validator;
+  CustomTextFormField({
+    super.key,
     this.name,
     this.hint,
     this.label,
     this.icondata,
     this.secure,
-    this.onsaved,
-    this.validator,
+    required this.onsaved,
+    required this.validator,
     this.keyboard,
     this.suffix,
   });
@@ -40,23 +41,33 @@ class _CustomTextFieldState extends State<CustomTextFormField> {
             onSaved: widget.onsaved,
             validator: widget.validator,
             keyboardType: widget.keyboard,
-
             autofocus: false,
+
             decoration: InputDecoration(
+
               prefixIcon: Icon(
                 widget.icondata,
-                color: Colors.black38,
+//                color: Colors.black38,
+
               ),
+          //    prefixIconColor: Colors.deepPurple,
               labelText: widget.label,
               labelStyle: const TextStyle(color: Colors.deepPurple),
+              iconColor: Colors.cyan,
               suffixIcon: widget.suffix,
+          //    suffixIconColor: Colors.deepPurple,
               hintText: widget.hint,
+
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 14.sp,
+
                 //     color: color,
               ),
-              border: const OutlineInputBorder(),
+
+              border: const OutlineInputBorder(
+
+              ),
               focusColor: Colors.deepPurple,
             )));
   }

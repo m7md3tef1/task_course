@@ -39,6 +39,8 @@ dependencies:
   animated_text_kit:
   font_awesome_flutter:
   flutter_screenutil:
+  animation_list: ^2.2.1
+  flutter_keyboard_visibility:
 
 
 dev_dependencies:
