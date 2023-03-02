@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart'
-as v;
+    as v;
 import 'package:projectgrad/animated_list.dart';
 import 'package:projectgrad/customtextfile.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,17 +42,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return v.KeyboardVisibilityBuilder(
-        builder: (context,visible)=>Padding(
-          padding: EdgeInsets.only(bottom: visible ? .31.sh : 0),
-          child: Scaffold(
-            body: SingleChildScrollView(
-              child: InkWell(
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                },
-                child: Column(
-
-                    children: [
+        builder: (context, visible) => Padding(
+              padding: EdgeInsets.only(bottom: visible ? .31.sh : 0),
+              child: Scaffold(
+                body: SingleChildScrollView(
+                  child: InkWell(
+                    onTap: () {
+                      FocusScope.of(context).unfocus();
+                    },
+                    child: Column(children: [
                       ClipPath(
                         clipper: WaveShape(),
                         child: SizedBox(
@@ -62,12 +60,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.deepPurple,
                               child: Center(
                                   child: Text(
-                                    'Register',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 28.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ))),
+                                'Register',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 28.sp,
+                                    fontWeight: FontWeight.bold),
+                              ))),
                         ),
                       ),
                       // Align(
@@ -102,7 +100,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               name = value;
                             },
                             validator: (value) {
-                              return value.toString().isEmpty? 'Please Enter Name':null;
+                              return value.toString().isEmpty
+                                  ? 'Please Enter Name'
+                                  : null;
                             },
                             icondata: Icons.person,
                             secure: false,
@@ -116,7 +116,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               email = value;
                             },
                             validator: (value) {
-                              return value.toString().isEmpty? 'Please Enter Email':null;
+                              return value.toString().isEmpty
+                                  ? 'Please Enter Email'
+                                  : null;
                             },
                             icondata: Icons.email,
                             secure: false,
@@ -134,21 +136,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 },
                                 child: s
                                     ? const Icon(
-                                  Icons.visibility_off,
-                                  //  color: Colors.black54,
-                                )
+                                        Icons.visibility_off,
+                                        //  color: Colors.black54,
+                                      )
                                     : const Icon(
-                                  Icons.visibility,
-                                  // color: Colors.black54,
-                                )),
+                                        Icons.visibility,
+                                        // color: Colors.black54,
+                                      )),
                             onsaved: (value) {
                               password = value;
                             },
                             validator: (value) {
-                              return value.toString().isEmpty? 'Please Enter Password':null;
+                              return value.toString().isEmpty
+                                  ? 'Please Enter Password'
+                                  : null;
                             },
                             icondata: Icons.lock,
-                            secure: se == true ? true : false,
+                            secure: s == true ? true : false,
                           ),
                           CustomTextFormField(
                             keyboard: TextInputType.visiblePassword,
@@ -163,20 +167,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 },
                                 child: se
                                     ? const Icon(
-                                  Icons.visibility_off,
-                                  //        color: Colors.black54,
-                                )
+                                        Icons.visibility_off,
+                                        //        color: Colors.black54,
+                                      )
                                     : const Icon(
-                                  Icons.visibility,
-                                  //      color: Colors.black54,
-                                )),
+                                        Icons.visibility,
+                                        //      color: Colors.black54,
+                                      )),
                             onsaved: (value) {
                               rePassword = value;
                             },
                             validator: (value) {
                               return value.toString().isEmpty
-                                  ? 'please Enter  Password'
-                                  : 'pass Didn\'t Same Confirm pass';
+                                  ? 'please Enter Password'
+                                  : rePassword != password
+                                      ? 'pass Didn\'t Same Confirm pass'
+                                      : null;
                             },
                             icondata: Icons.lock,
                             secure: se == true ? true : false,
@@ -190,7 +196,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               email = value;
                             },
                             validator: (value) {
-                              return value.toString().isEmpty? 'Please Enter Name':null;
+                              return value.toString().isEmpty
+                                  ? 'Please Enter Name'
+                                  : null;
                             },
                             icondata: Icons.phone,
                             secure: false,
@@ -200,14 +208,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (SignInKey.currentState!.validate()) {
                                 SignInKey.currentState!.save();
                                 try {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(builder: (context) {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) {
                                     return const AnimatedListScreen();
                                   }));
                                 } catch (error) {
                                   print(error);
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(error.toString())));
+                                      SnackBar(
+                                          content: Text(error.toString())));
                                 }
                               } else {
                                 const SnackBar(
@@ -215,7 +224,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               }
                             },
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(12, 5.0, 12.0, 5.0),
+                              padding:
+                                  const EdgeInsets.fromLTRB(12, 5.0, 12.0, 5.0),
                               child: Container(
                                 height: 50.h,
                                 decoration: BoxDecoration(
@@ -240,15 +250,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             alignment: Alignment.center,
                             child: TextButton(
                                 onPressed: () {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(builder: (context) {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) {
                                     return const SigninScreen();
                                   }));
                                 },
                                 child: const Text(
                                   'Do you have an account',
-                                  style:
-                                  TextStyle(color: Colors.black26, fontSize: 20),
+                                  style: TextStyle(
+                                      color: Colors.black26, fontSize: 20),
                                 )),
                           ),
                         ]),
@@ -257,11 +267,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: MediaQuery.of(context).size.height * .03,
                       ),
                     ]),
+                  ),
+                ),
               ),
-            ),
-          ),
-        )
-
-    );
+            ));
   }
 }
